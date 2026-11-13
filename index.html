@@ -3,253 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rechtliche Informationen - Anne Ladwig</title>
+    <title>Rechtliche Informationen &amp; Shop – DieWagnerAnne</title>
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --accent-blue: #1e3a8a;
+            --accent-blue-hover: #172554;
+            --bg-page: #fafafa;
+            --border-color: #e2e8f0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            background-color: var(--bg-page);
+            color: #18181b;
+            line-height: 1.65;
+            position: relative;
         }
 
-        .container {
+        /* Scharfe 90-Grad-Ecken im ganzen Layout */
+        .card, .btn, .nav-link, .accordion-item, .accordion-button, pre {
+            border-radius: 0 !important;
+        }
+
+        /* Wiki-Sidebar (Desktop) */
+        .wiki-sidebar {
+            position: sticky;
+            top: 2rem;
             background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            padding: 40px 50px;
-            max-width: 800px;
-            margin: 0 auto;
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            color: #2d3748;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            color: #4a5568;
-            margin-top: 35px;
-            margin-bottom: 15px;
+        .wiki-sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        h3 {
-            font-size: 1.2rem;
-            color: #2d3748;
-            margin-top: 25px;
-            margin-bottom: 10px;
-        }
-
-        p, address, ul {
-            margin-bottom: 15px;
-            font-style: normal;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        a:hover {
-            color: #764ba2;
-            text-decoration: underline;
-        }
-
-        .form-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-family: monospace;
-            white-space: pre-wrap;
-        }
-
-        .footer-note {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0;
-            color: #718096;
+        /* Wiki-Links & ScrollSpy-Zustände */
+        .wiki-nav .nav-link {
+            color: #475569;
             font-size: 0.9rem;
-            text-align: right;
+            padding: 0.4rem 0.75rem;
+            border-left: 2px solid transparent;
+            transition: all 0.15s ease;
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
+        .wiki-nav .nav-link:hover {
+            color: var(--accent-blue);
+            background-color: #f8fafc;
+        }
+
+        /* Aktiver Abschnitt (wird durch Bootstrap ScrollSpy gesetzt) */
+        .wiki-nav .nav-link.active {
+            color: var(--accent-blue);
+            font-weight: 600;
+            border-left: 2px solid var(--accent-blue);
+            background-color: #f4f7fb;
+        }
+
+        /* Unterpunkte im Wiki-Menü */
+        .wiki-nav .nav-sub .nav-link {
+            padding-left: 1.5rem;
+            font-size: 0.83rem;
+        }
+
+        /* Inhalts-Sektionen */
+        section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            scroll-margin-top: 2rem;
+        }
+
+        section.shop-section {
+            background: #f4f7fb;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        section h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            padding-bottom: 0.6rem;
+            margin-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            scroll-margin-top: 2rem;
+        }
+
+        .btn-marine {
+            background-color: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .btn-marine:hover {
+            background-color: var(--accent-blue-hover);
+            border-color: var(--accent-blue-hover);
+            color: #ffffff;
+        }
+
+        .muster-box {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.88rem;
+            white-space: pre-wrap;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Rechtliche Informationen – DieWagnerAnne</h1>
-        <p class="subtitle">Hier findest du alle rechtlichen Informationen zu meinem Instagram-Auftritt und zum Verkauf der DieWagnerAnne-Socken.</p>
-        
-        <h2>Impressum</h2>
-        <p><strong>Angaben gemäß § 5 DDG</strong><br>
-        Anne Ladwig<br>
-        Esslingerstraße 2<br>
-        73037 Göppingen<br>
-        Deutschland</p>
-        
-        <p><strong>Kontakt</strong><br>
-        Telefon: 07161 978830<br>
-        E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a></p>
+<body data-bs-spy="scroll" data-bs-target="#wiki-toc" data-bs-offset="100" tabindex="0">
 
-        <p><strong>Umsatzsteuer</strong><br>
-        Kleinunternehmerin gemäß § 19 UStG.</p>
+<div class="container py-4 py-md-5" style="max-width: 1080px;">
 
-        <p><strong>Verbraucherstreitbeilegung</strong><br>
-        Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    <!-- Kopfbereich -->
+    <header class="mb-4 pb-3 border-bottom">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2">
+            <div>
+                <span class="badge text-bg-dark mb-2" style="border-radius: 0;">@diewagneranne</span>
+                <h1 class="h2 fw-bold mb-1">DieWagnerAnne – Shop &amp; Rechtliches</h1>
+                <p class="text-secondary mb-0">Bestellinformationen, Impressum, Datenschutz und Widerrufsbelehrung.</p>
+            </div>
+            <div class="text-secondary small">
+                Stand: August 2026
+            </div>
+        </div>
+    </header>
 
-        <p><strong>Haftung für Inhalte</strong><br>
-        Als Diensteanbieterin bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+    <div class="row g-4">
 
-        <p><strong>Haftung für Links</strong><br>
-        Diese Seite kann Links zu externen Webseiten Dritter enthalten, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
+        <!-- LINKE SPALTE: WIKI-INHALTSVERZEICHNIS -->
+        <aside class="col-lg-4">
+            <!-- Mobile: Einklappbare Wiki-Box -->
+            <div class="d-lg-none mb-3">
+                <div class="accordion" id="mobileTocAccordion">
+                    <div class="accordion-item border">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-semibold py-2 px-3 bg-white text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#mobileTocCollapse">
+                                Inhaltsverzeichnis anzeigen
+                            </button>
+                        </h2>
+                        <div id="mobileTocCollapse" class="accordion-collapse collapse" data-bs-parent="#mobileTocAccordion">
+                            <div class="accordion-body p-2 bg-white">
+                                <nav class="nav flex-column wiki-nav">
+                                    <a class="nav-link fw-semibold" href="#shop">1. Socken &amp; Bestellung</a>
+                                    <a class="nav-link" href="#impressum">2. Impressum</a>
+                                    <a class="nav-link" href="#vertrag">3. Vertragspartner &amp; Mängel</a>
+                                    <a class="nav-link" href="#datenschutz">4. Datenschutz</a>
+                                    <a class="nav-link" href="#widerruf">5. Widerrufsbelehrung</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <h2>Bestellinformationen</h2>
-        
-        <h3>Socken & Größen</h3>
-        <p>Die DieWagnerAnne-Socken sind – solange der Vorrat reicht – in folgenden Größen erhältlich:</p>
-        <ul>
-            <li>M: Schuhgröße 38–42</li>
-            <li>L: Schuhgröße 43–47</li>
-            <li>XXL: Schuhgröße 48–50</li>
-        </ul>
-        <p><em>Hinweis zur Passform:</em> Ich selbst trage Schuhgröße 38 und Größe M. Nach dem ersten Waschen passen mir die Socken perfekt.</p>
+            <!-- Desktop: Fixierte Wiki-Sidebar mit ScrollSpy -->
+            <nav id="wiki-toc" class="wiki-sidebar d-none d-lg-block" aria-label="Inhaltsverzeichnis">
+                <div class="wiki-sidebar-title">Inhaltsverzeichnis</div>
+                <div class="nav flex-column wiki-nav">
+                    <a class="nav-link" href="#shop">1. Socken &amp; Bestellung</a>
+                    <div class="nav flex-column nav-sub">
+                        <a class="nav-link" href="#shop-groessen">Größen &amp; Preise</a>
+                        <a class="nav-link" href="#shop-ablauf">Zahlung &amp; Versand</a>
+                    </div>
 
-        <h3>Preis</h3>
-        <ul>
-            <li>Preis pro Paar: 9,90 €</li>
-            <li>Versand innerhalb Deutschlands als Maxibrief: 2,90 €</li>
-            <li>Gesamtpreis für ein Paar inklusive Versand: 12,80 €</li>
-        </ul>
+                    <a class="nav-link mt-1" href="#impressum">2. Impressum</a>
+                    <a class="nav-link" href="#vertrag">3. Vertragspartner &amp; Mängel</a>
 
-        <h3>Bestellung & Zahlung</h3>
-        <ul>
-            <li>Die Bestellung erfolgt derzeit direkt über meinen Instagram-Account @diewagneranne.</li>
-            <li>Die Zahlung erfolgt per Banküberweisung. Die Bankverbindung wird im Rahmen der Bestellung per Instagram-Direktnachricht mitgeteilt.</li>
-            <li>Zur schnellen Zuordnung der Zahlung kann ein Screenshot der Überweisungsbestätigung per Direktnachricht übermittelt werden.</li>
-        </ul>
+                    <a class="nav-link" href="#datenschutz">4. Datenschutz</a>
+                    <div class="nav flex-column nav-sub">
+                        <a class="nav-link" href="#ds-daten">Verarbeitete Daten</a>
+                        <a class="nav-link" href="#ds-dienste">OneDrive &amp; Instagram</a>
+                        <a class="nav-link" href="#ds-rechte">Speicherdauer &amp; Rechte</a>
+                    </div>
 
-        <h3>Versand & Lieferzeit</h3>
-        <ul>
-            <li>Der Versand erfolgt innerhalb Deutschlands als Maxibrief ohne Sendungsverfolgung.</li>
-            <li>Die Bestellungen werden jeweils bis zum Ende der Woche gesammelt. Bezahlte Bestellungen werden in der Regel gesammelt am darauffolgenden Wochenende versendet.</li>
-        </ul>
+                    <a class="nav-link mt-1" href="#widerruf">5. Widerrufsbelehrung</a>
+                    <div class="nav flex-column nav-sub">
+                        <a class="nav-link" href="#widerruf-formular">Muster-Formular</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
 
-        <h2>Vertragspartnerin & Mängelrechte</h2>
-        <p><strong>Vertragspartnerin ist:</strong><br>
-        Anne Ladwig<br>
-        Esslingerstraße 2<br>
-        73037 Göppingen<br>
-        Deutschland<br>
-        E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a><br>
-        Telefon: 07161 978830</p>
-        
-        <p><strong>Gesetzliche Mängelrechte</strong><br>
-        Für die angebotenen Waren gelten die gesetzlichen Mängelrechte.</p>
+        <!-- RECHTE SPALTE: HAUPTINHALT -->
+        <main class="col-lg-8">
 
-        <h2>Datenschutzinformationen (Instagram-Bestellungen)</h2>
-        
-        <h3>1. Verantwortliche</h3>
-        <p>Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit Bestellungen über den Instagram-Account @diewagneranne ist:<br>
-        Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland<br>
-        E-Mail: AL@ougw.de | Telefon: 07161 978830</p>
+            <!-- 1. SHOP -->
+            <section id="shop" class="shop-section">
+                <span class="badge mb-2" style="background-color: var(--accent-blue); border-radius: 0;">Instagram-Shop</span>
+                <h2>1. Socken &amp; Bestellinformationen</h2>
+                <p>Die <strong>DieWagnerAnne-Socken</strong> sind – solange der Vorrat reicht – direkt über meinen Instagram-Account erhältlich.</p>
 
-        <h3>2. Welche Daten werden verarbeitet?</h3>
-        <p>Wenn du über meinen Instagram-Account @diewagneranne eine Bestellung aufgibst, verarbeite ich die Daten, die du mir im Zusammenhang mit deiner Bestellung übermittelst. Hierzu können insbesondere gehören:</p>
-        <ul>
-            <li>Vor- und Nachname</li>
-            <li>Instagram-Benutzername</li>
-            <li>Versandanschrift</li>
-            <li>bestelltes Produkt und gewählte Größe</li>
-            <li>Bestelldatum</li>
-            <li>Informationen zum Zahlungseingang</li>
-            <li>Versanddatum</li>
-            <li>für die Bestellung relevante Inhalte unserer Kommunikation</li>
-        </ul>
-        <p>Sofern du mir einen Screenshot deiner Überweisungsbestätigung übermittelst, wird dieser ausschließlich zur kurzfristigen Überprüfung und Zuordnung deiner Zahlung verwendet und nicht länger als hierfür erforderlich aufbewahrt.</p>
+                <div id="shop-groessen" class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="bg-white border p-3 h-100">
+                            <h3 class="mt-0">Größen</h3>
+                            <ul class="mb-2">
+                                <li><strong>M:</strong> Schuhgröße 38–42</li>
+                                <li><strong>L:</strong> Schuhgröße 43–47</li>
+                                <li><strong>XXL:</strong> Schuhgröße 48–50</li>
+                            </ul>
+                            <p class="small text-secondary mb-0"><em>Passform-Tipp:</em> Ich selbst trage Schuhgröße 38 und Größe M. Nach dem ersten Waschen passen mir die Socken perfekt.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bg-white border p-3 h-100">
+                            <h3 class="mt-0">Preise &amp; Versand</h3>
+                            <ul class="mb-0">
+                                <li><strong>Preis pro Paar:</strong> 9,90 €</li>
+                                <li><strong>Versand (DE, Maxibrief):</strong> 2,90 €</li>
+                                <li><strong>Gesamtpreis (1 Paar):</strong> 12,80 €</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-        <h3>3. Zweck und Rechtsgrundlage</h3>
-        <p>Die Verarbeitung deiner personenbezogenen Daten erfolgt zur Bearbeitung deiner Bestellung, zur Zuordnung deiner Zahlung, zum Versand der Ware und zur Abwicklung des Kaufvertrags. Rechtsgrundlage hierfür ist Art. 6 Abs. 1 lit. b DSGVO, da die Verarbeitung zur Durchführung vorvertraglicher Maßnahmen und zur Erfüllung des Kaufvertrags erforderlich ist. Soweit bestimmte Daten aufgrund gesetzlicher, insbesondere steuer- oder handelsrechtlicher Vorschriften aufbewahrt werden müssen, erfolgt die Verarbeitung auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO.</p>
+                <h3 id="shop-ablauf">Bestellung, Zahlung &amp; Lieferzeit</h3>
+                <ul>
+                    <li><strong>Bestellung:</strong> Erfolgt direkt per Direktnachricht über meinen Instagram-Account <strong>@diewagneranne</strong>.</li>
+                    <li><strong>Zahlung:</strong> Per Banküberweisung (Bankverbindung wird im Chat mitgeteilt). Zur schnellen Zuordnung kann ein Screenshot der Überweisungsbestätigung geschickt werden.</li>
+                    <li><strong>Versand:</strong> Innerhalb Deutschlands als Maxibrief ohne Sendungsverfolgung. Bestellungen werden bis Ende der Woche gesammelt und bezahlte Bestellungen in der Regel am darauffolgenden Wochenende versendet.</li>
+                </ul>
 
-        <h3>4. Speicherung in Excel und Microsoft OneDrive</h3>
-        <p>Zur Organisation, Abwicklung und Dokumentation der Bestellungen werden die hierfür erforderlichen Daten in einer Excel-Tabelle erfasst. Diese Excel-Datei wird in Microsoft OneDrive gespeichert. Im Rahmen der Nutzung von Microsoft OneDrive können personenbezogene Daten durch Microsoft verarbeitet werden. Microsoft wird insoweit als eingesetzter IT- bzw. Cloud-Dienstleister tätig. Die Speicherung dient insbesondere dazu, Bestellungen und Zahlungseingänge zuzuordnen, den Versand zu organisieren und – soweit erforderlich – gesetzliche Dokumentations- und Aufbewahrungspflichten zu erfüllen. Weitere Informationen zur Verarbeitung personenbezogener Daten durch Microsoft findest du in den Datenschutzinformationen von Microsoft.</p>
+                <a href="https://instagram.com/diewagneranne" target="_blank" rel="noopener noreferrer" class="btn btn-marine px-4 py-2 mt-2">
+                    Jetzt auf Instagram bestellen (@diewagneranne)
+                </a>
+            </section>
 
-        <h3>5. Verarbeitung über Instagram</h3>
-        <p>Die Kontaktaufnahme und Bestellkommunikation erfolgt über Instagram, einen Dienst von Meta. Bei der Nutzung von Instagram werden personenbezogene Daten auch durch den Betreiber der Plattform verarbeitet. Auf Art und Umfang dieser Datenverarbeitung durch Instagram bzw. Meta habe ich nur begrenzten Einfluss. Weitere Informationen hierzu findest du in den Datenschutzinformationen von Instagram bzw. Meta.</p>
+            <!-- 2. IMPRESSUM -->
+            <section id="impressum">
+                <h2>2. Impressum</h2>
+                <p><strong>Angaben gemäß § 5 DDG</strong><br>
+                Anne Ladwig<br>
+                Esslingerstraße 2<br>
+                73037 Göppingen<br>
+                Deutschland</p>
 
-        <h3>6. Weitergabe personenbezogener Daten</h3>
-        <p>Deine personenbezogenen Daten werden nicht für fremde Werbezwecke verkauft oder zu sachfremden Zwecken weitergegeben. Eine Verarbeitung oder Weitergabe erfolgt nur, soweit dies für die Durchführung deiner Bestellung erforderlich ist oder eine gesetzliche Verpflichtung hierzu besteht. Dies kann insbesondere die Verarbeitung durch eingesetzte IT- und Cloud-Dienstleister wie Microsoft sowie gegebenenfalls durch Versanddienstleister betreffen. Eine Weitergabe an Behörden, insbesondere Finanz- oder Steuerbehörden, kann erfolgen, soweit ich hierzu gesetzlich verpflichtet bin.</p>
+                <p><strong>Kontakt</strong><br>
+                Telefon: 07161 978830<br>
+                E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a></p>
 
-        <h3>7. Speicherdauer</h3>
-        <p>Personenbezogene Daten werden grundsätzlich nur so lange gespeichert, wie dies für die Abwicklung der Bestellung erforderlich ist. Daten und Unterlagen, für die gesetzliche steuer- oder handelsrechtliche Aufbewahrungspflichten bestehen, werden für die jeweils gesetzlich vorgeschriebene Dauer gespeichert. Daten, die ausschließlich für den Versand oder die kurzfristige Abwicklung der Bestellung benötigt werden und keiner gesetzlichen Aufbewahrungspflicht unterliegen, werden gelöscht, sobald sie hierfür nicht mehr erforderlich sind. Dies gilt insbesondere für übermittelte Screenshots von Überweisungsbestätigungen, sobald die Zahlung anderweitig eindeutig zugeordnet werden konnte.</p>
+                <p><strong>Umsatzsteuer</strong><br>
+                Kleinunternehmerin gemäß § 19 UStG.</p>
 
-        <h3>8. Deine Rechte</h3>
-        <p>Du hast im Rahmen der gesetzlichen Voraussetzungen insbesondere folgende Rechte:</p>
-        <ul>
-            <li>Recht auf Auskunft</li>
-            <li>Recht auf Berichtigung</li>
-            <li>Recht auf Löschung</li>
-            <li>Recht auf Einschränkung der Verarbeitung</li>
-            <li>Recht auf Datenübertragbarkeit</li>
-            <li>gegebenenfalls Recht auf Widerspruch gegen die Verarbeitung</li>
-        </ul>
-        <p>Zur Ausübung deiner Rechte oder bei Fragen zur Verarbeitung deiner personenbezogenen Daten kannst du dich jederzeit an mich wenden: <a href="mailto:AL@ougw.de">AL@ougw.de</a>. Du hast außerdem das Recht, dich bei einer zuständigen Datenschutzaufsichtsbehörde über die Verarbeitung deiner personenbezogenen Daten zu beschweren.</p>
+                <p><strong>Verbraucherstreitbeilegung</strong><br>
+                Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
 
-        <h2>Widerrufsbelehrung</h2>
-        
-        <h3>Widerrufsrecht</h3>
-        <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Ware in Besitz genommen haben bzw. hat.</p>
-        <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie mich<br>
-        <strong>Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland<br>
-        E-Mail: AL@ougw.de | Telefon: 07161 978830</strong><br>
-        mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das unten aufgeführte Muster-Widerrufsformular verwenden. Die Verwendung des Formulars ist jedoch nicht vorgeschrieben. Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+                <p class="mb-0"><strong>Haftung für Inhalte &amp; Links</strong><br>
+                Als Diensteanbieterin bin ich für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Diese Seite kann Links zu externen Webseiten Dritter enthalten, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
+            </section>
 
-        <h3>Folgen des Widerrufs</h3>
-        <p>Wenn Sie diesen Vertrag widerrufen, habe ich Ihnen alle Zahlungen, die ich von Ihnen erhalten habe, einschließlich der Lieferkosten (mit Ausnahme zusätzlicher Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von mir angebotene günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf bei mir eingegangen ist.</p>
-        <p>Für diese Rückzahlung verwende ich dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart. In keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet. Ich kann die Rückzahlung verweigern, bis ich die Ware wieder zurückerhalten habe oder bis Sie den Nachweis erbracht haben, dass Sie die Ware zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
-        <p>Sie haben die Ware unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie mich über den Widerruf dieses Vertrags unterrichten, an <strong>Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland</strong> zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Ware vor Ablauf der Frist von vierzehn Tagen absenden.</p>
-        <p>Sie tragen die unmittelbaren Kosten der Rücksendung der Ware. Sie müssen für einen etwaigen Wertverlust der Ware nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Ware nicht notwendigen Umgang mit ihr zurückzuführen ist.</p>
+            <!-- 3. VERTRAGSPARTNER -->
+            <section id="vertrag">
+                <h2>3. Vertragspartnerin &amp; Mängelrechte</h2>
+                <p><strong>Vertragspartnerin ist:</strong><br>
+                Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland<br>
+                E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a> | Telefon: 07161 978830</p>
 
-        <h3>Muster-Widerrufsformular</h3>
-        <p>Wenn Sie den Vertrag widerrufen wollen, können Sie dieses Formular verwenden. Die Verwendung des Formulars ist nicht vorgeschrieben.</p>
-        
-        <div class="form-box">
-An:
+                <p class="mb-0"><strong>Gesetzliche Mängelrechte</strong><br>
+                Für die angebotenen Waren gelten die gesetzlichen Mängelrechte.</p>
+            </section>
+
+            <!-- 4. DATENSCHUTZ -->
+            <section id="datenschutz">
+                <h2>4. Datenschutzinformationen (Instagram-Bestellungen)</h2>
+
+                <h3>Verantwortliche</h3>
+                <p>Verantwortlich für die Verarbeitung personenbezogener Daten im Zusammenhang mit Bestellungen über den Instagram-Account @diewagneranne ist:<br>
+                Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland<br>
+                E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a> | Telefon: 07161 978830</p>
+
+                <h3 id="ds-daten">Welche Daten werden verarbeitet &amp; Rechtsgrundlage?</h3>
+                <p>Wenn du über meinen Instagram-Account @diewagneranne eine Bestellung aufgibst, verarbeite ich die Daten, die du mir im Zusammenhang mit deiner Bestellung übermittelst (Vor- und Nachname, Instagram-Benutzername, Versandanschrift, bestelltes Produkt/Größe, Bestell-, Zahlungs- und Versanddatum sowie bestellrelevante Kommunikationsinhalte).</p>
+                <p>Übermittelte Screenshots von Überweisungsbestätigungen werden ausschließlich zur kurzfristigen Überprüfung und Zuordnung deiner Zahlung verwendet und nicht länger als erforderlich aufbewahrt.</p>
+                <p>Die Verarbeitung erfolgt zur Vertragsabwicklung gemäß <strong>Art. 6 Abs. 1 lit. b DSGVO</strong> sowie zur Erfüllung steuer- und handelsrechtlicher Aufbewahrungspflichten gemäß <strong>Art. 6 Abs. 1 lit. c DSGVO</strong>.</p>
+
+                <h3 id="ds-dienste">Speicherung in Excel/OneDrive, Instagram &amp; Weitergabe</h3>
+                <p><strong>Excel &amp; Microsoft OneDrive:</strong> Zur Organisation und Dokumentation der Bestellungen werden die erforderlichen Daten in einer Excel-Tabelle erfasst und in Microsoft OneDrive gespeichert. Microsoft wird insoweit als eingesetzter IT- bzw. Cloud-Dienstleister tätig.</p>
+                <p><strong>Instagram (Meta):</strong> Die Kontaktaufnahme erfolgt über Instagram. Bei der Nutzung von Instagram werden personenbezogene Daten auch durch Meta verarbeitet, worauf ich nur begrenzten Einfluss habe.</p>
+                <p><strong>Weitergabe:</strong> Deine Daten werden nicht zu Werbezwecken verkauft. Eine Weitergabe erfolgt nur, soweit dies für die Vertragsdurchführung (z. B. Versanddienstleister, IT-Dienstleister) oder aufgrund gesetzlicher Pflichten (z. B. Finanzbehörden) erforderlich ist.</p>
+
+                <h3 id="ds-rechte">Speicherdauer &amp; Deine Rechte</h3>
+                <p>Daten werden nur so lange gespeichert, wie es für die Bestellabwicklung oder aufgrund gesetzlicher Aufbewahrungsfristen erforderlich ist. Zahlungs-Screenshots werden nach eindeutiger Zuordnung gelöscht.</p>
+                <p class="mb-0">Du hast nach der DSGVO das Recht auf <strong>Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit</strong> sowie <strong>Widerspruch</strong>. Wende dich hierzu jederzeit an <a href="mailto:AL@ougw.de">AL@ougw.de</a>. Zudem besteht ein Beschwerderecht bei einer zuständigen Datenschutzaufsichtsbehörde.</p>
+            </section>
+
+            <!-- 5. WIDERRUF -->
+            <section id="widerruf">
+                <h2>5. Widerrufsbelehrung</h2>
+
+                <h3>Widerrufsrecht</h3>
+                <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Ware in Besitz genommen haben bzw. hat.</p>
+                <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie mich<br>
+                <strong>Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland<br>
+                E-Mail: <a href="mailto:AL@ougw.de">AL@ougw.de</a> | Telefon: 07161 978830</strong><br>
+                mittels einer eindeutigen Erklärung (z. B. per Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das unten aufgeführte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist. Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</p>
+
+                <h3>Folgen des Widerrufs</h3>
+                <p>Wenn Sie diesen Vertrag widerrufen, habe ich Ihnen alle Zahlungen, die ich von Ihnen erhalten habe, einschließlich der Lieferkosten (mit Ausnahme zusätzlicher Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von mir angebotene günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf bei mir eingegangen ist.</p>
+                <p>Für diese Rückzahlung verwende ich dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart. In keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet. Ich kann die Rückzahlung verweigern, bis ich die Ware wieder zurückerhalten habe oder bis Sie den Nachweis erbracht haben, dass Sie die Ware zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
+                <p>Sie haben die Ware unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie mich über den Widerruf dieses Vertrags unterrichten, an <strong>Anne Ladwig, Esslingerstraße 2, 73037 Göppingen, Deutschland</strong> zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Ware vor Ablauf der Frist von vierzehn Tagen absenden.</p>
+                <p>Sie tragen die unmittelbaren Kosten der Rücksendung der Ware. Sie müssen für einen etwaigen Wertverlust der Ware nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Ware nicht notwendigen Umgang mit ihr zurückzuführen ist.</p>
+
+                <h3 id="widerruf-formular">Muster-Widerrufsformular</h3>
+                <p>Wenn Sie den Vertrag widerrufen wollen, können Sie dieses Formular verwenden (nicht vorgeschrieben):</p>
+                <div class="muster-box">An:
 Anne Ladwig
 Esslingerstraße 2
 73037 Göppingen
@@ -266,12 +344,14 @@ Anschrift des/der Verbraucher(s):
 
 Datum:
 
-Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):
-        </div>
+Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):</div>
+            </section>
 
-        <div class="footer-note">
-            Stand: August 2026
-        </div>
+        </main>
     </div>
+</div>
+
+<!-- Bootstrap 5.3 JS Bundle (für ScrollSpy & mobiles Inhaltsverzeichnis) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
